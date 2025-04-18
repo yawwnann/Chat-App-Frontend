@@ -71,6 +71,8 @@ export const useAuthStore = create((set, get) => ({
 
   updateProfile: async (data) => {
     set({ isUpdatingProfile: true });
+    const currentTimeUTC = new Date().toISOString();
+    console.log("Sending update profile request at:", currentTimeUTC);
     try {
       const res = await axiosInstance.put("/auth/update-profile", data);
       set({ authUser: res.data });
